@@ -12,9 +12,25 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void inputValidation(string[] args)
+        static bool inputValidation(string[] args)
         {
-            return;
+            int num;
+            bool temp = true;
+            foreach (string i in args)
+            {
+                if (int.TryParse(i, out num))
+                {
+                    if (num < 0)
+                    {
+                        temp = false;
+                    }
+                }
+                else
+                {
+                    temp = false;
+                }
+            }
+            return temp;
         }
         static void selectionValidation()
         {
