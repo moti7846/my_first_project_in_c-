@@ -12,11 +12,27 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void input_validation()
+        static bool inputValidation(string[] args)
         {
-            return;
+            int num;
+            bool temp = true;
+            foreach (string i in args)
+            {
+                if (int.TryParse(i, out num))
+                {
+                    if (num < 0)
+                    {
+                        temp = false;
+                    }
+                }
+                else
+                {
+                    temp = false;
+                }
+            }
+            return temp;
         }
-        static void selection_validation()
+        static void selectionValidation()
         {
             return;
         }
@@ -24,11 +40,11 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void input_deoding()
+        static void inputDeoding()
         {
             return;
         }
-        static void args_reverse()
+        static void argsReverse()
         {
             return;
         }
@@ -48,7 +64,7 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void list_length()
+        static void listLength()
         {
             return;
         }
@@ -66,9 +82,9 @@ namespace my_first_project_in_c_
         }
 
 
-        static void Main(int[] args)
+        static void Main(string[] args)
         {
-
+            Console.WriteLine(inputValidation(args));
         }
     }
 }
