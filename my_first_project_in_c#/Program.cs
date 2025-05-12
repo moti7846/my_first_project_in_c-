@@ -12,11 +12,11 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void input_validation()
+        static void inputValidation(string[] args)
         {
             return;
         }
-        static void selection_validation()
+        static void selectionValidation()
         {
             return;
         }
@@ -24,11 +24,11 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void input_deoding()
+        static void inputDeoding()
         {
             return;
         }
-        static void args_reverse()
+        static void argsReverse()
         {
             return;
         }
@@ -48,7 +48,7 @@ namespace my_first_project_in_c_
         {
             return;
         }
-        static void list_length()
+        static void listLength()
         {
             return;
         }
@@ -66,9 +66,9 @@ namespace my_first_project_in_c_
         }
 
 
-        static void Main(int[] args)
+        static void Main(string[] args)
         {
-
+            Console.WriteLine(inputValidation(args));
         }
     }
 }
