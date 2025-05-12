@@ -9,7 +9,7 @@ namespace my_first_project_in_c_
     internal class Program
     {
         static void Main(string[] args)
-        {
+        { 
         }
     }
 }
