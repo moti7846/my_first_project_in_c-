@@ -9,10 +9,17 @@ namespace my_first_project_in_c_
     internal class Program
     {
         static string[] args;
-
+        //מבצע אימות ומגדיר את args
         static void start(string[] arr)
         {
-            args = arr;
+            if (inputValidation(arr))
+            {
+                args = arr;
+            }
+            else
+            {
+                inputDeoding();
+            }
         }
         static void printMenu()
         {
@@ -31,12 +38,14 @@ namespace my_first_project_in_c_
 
         static void choiceMenu()
         {
-            int choice = -1;
-            while (choice > 0 && choice < 11) ;
+            int choice;
+            do
             {
                 Console.Write("enter yuor choice: ");
                 choice = int.Parse(Console.ReadLine());
             }
+            while (choice < 1 || choice > 10);
+            
             menu(choice);
         }
         static void menu(int choice)
@@ -44,7 +53,8 @@ namespace my_first_project_in_c_
             switch (choice)
             {
                 case 1:
-                    return;
+                    inputDeoding();
+                    break;
                 case 2:
                     printerList(args);
                     break;
@@ -52,24 +62,29 @@ namespace my_first_project_in_c_
                     printerList(argsReverse(args));
                     break;
                 case 4:
-                    printerList(sorting(args));
+                    printerListInt(sorting(args));
                     break;
                 case 5:
-                    printer(maximum(args));
+                    Console.WriteLine(maximum(args));
                     break;
                 case 6:
-                    printer(minimum(args));
+                    Console.WriteLine(minimum(args)); 
                     break;
-                //case 7:
-                //    printer(average(args));
+                case 7:
+                    Console.WriteLine(average(args));
+                    break;
                 case 8:
-                    return;
+                    Console.WriteLine(listLength(args));
+                    break;
                 case 9:
-                    return;
+                    Console.WriteLine(total(args));
+                    break;
                 case 10:
+                    exit();
                     return;
 
             }
+            printMenu();
         }
         static bool inputValidation(string[] args)
         {
@@ -96,20 +111,28 @@ namespace my_first_project_in_c_
             return;
         }
 
-        static void printer(string str)
+
+        static void printerListInt(int[] args)
         {
-            Console.WriteLine(str);
+            foreach (int i in args)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
         }
         static void printerList(string[] args)
         {
             foreach (string i in args)
             {
-                Console.WriteLine(i);
+                Console.Write(i + " ");
             }
+            Console.WriteLine();
         }
         static void inputDeoding()
         {
-            return;
+            Console.WriteLine("enter 3 numbers: ");
+            string[] temp = Console.ReadLine().Split(' ');
+            start(temp);
         }
         static string[] argsReverse(string[] args)
         {
@@ -122,39 +145,53 @@ namespace my_first_project_in_c_
 
             return temp;
         }
-        static string[] sorting(string[] args)
+        static int[] sorting(string[] args)
         {
-            Array.Sort(args);
-            return args;
+            int[] temp = new int[args.Length];
+            for (int i = 0; i < args.Length; i++)
+            {
+                temp[i] = Convert.ToInt32(args[i]);
+            }
+            Array.Sort(temp);
+            return temp;
         }
-        static string maximum(string[] args)
+        static int maximum(string[] args)
         {
-            string[] temp =  sorting(args);
+            int[] temp =  sorting(args);
             return temp[args.Length - 1];
         }
-        static string minimum(string[] args)
+        static int minimum(String[] args)
         {
-            string[] temp = sorting(args);
+            int[] temp = sorting(args);
             return temp[0];
         }
-        static void average(string[] args)
+        static float average(string[] args)
         {
-            return;
+            float sum = 0;
+            int[] temp = sorting(args);
+            foreach(int i in temp)
+            {
+                sum += i;
+            }
+            return sum / listLength(args);
         }
-        static void listLength()
+        static int listLength(string[] args)
         {
-            return;
+            return args.Length;
         }
-        static void total()
+        static float total(string[] args)
         {
-            return;
+            float sum = 0;
+            int[] temp = sorting(args);
+            foreach (int i in temp)
+            {
+                sum += i;
+            }
+            return sum;
         }
         static void exit()
         {
-            return;
-        }
-        static void nul()
-        {
+            Console.WriteLine("god by");
             return;
         }
 
@@ -162,6 +199,7 @@ namespace my_first_project_in_c_
 
         static void Main(string[] args)
         {
+            start(args);
             if (inputValidation(args))
             {
                 printMenu();
