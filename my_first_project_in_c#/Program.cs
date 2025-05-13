@@ -45,7 +45,7 @@ namespace my_first_project_in_c_
                 choice = int.Parse(Console.ReadLine());
             }
             while (choice < 1 || choice > 10);
-            
+
             menu(choice);
         }
         static void menu(int choice)
@@ -68,7 +68,7 @@ namespace my_first_project_in_c_
                     Console.WriteLine(maximum(args));
                     break;
                 case 6:
-                    Console.WriteLine(minimum(args)); 
+                    Console.WriteLine(minimum(args));
                     break;
                 case 7:
                     Console.WriteLine(average(args));
@@ -157,7 +157,7 @@ namespace my_first_project_in_c_
         }
         static int maximum(string[] args)
         {
-            int[] temp =  sorting(args);
+            int[] temp = sorting(args);
             return temp[args.Length - 1];
         }
         static int minimum(String[] args)
@@ -169,7 +169,7 @@ namespace my_first_project_in_c_
         {
             float sum = 0;
             int[] temp = sorting(args);
-            foreach(int i in temp)
+            foreach (int i in temp)
             {
                 sum += i;
             }
