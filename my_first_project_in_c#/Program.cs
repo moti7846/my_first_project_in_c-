@@ -9,7 +9,7 @@ namespace my_first_project_in_c_
     internal class Program
     {
         static string[] args;
-        //מבצע אימות קלט ומגדיר את args
+        //אתחול והגדרת המשתנה args לאחר בדיקת תקינות הקלט
         static void start(string[] arr)
         {
             if (inputValidation(arr))
@@ -22,6 +22,7 @@ namespace my_first_project_in_c_
                 inputDeoding();
             }
         }
+        //הצגת תפריט ראשי עם אפשרויות לבחירה
         static void printMenu()
         {
             Console.WriteLine("1. Input a Series. (Replace the current series)");
@@ -36,7 +37,7 @@ namespace my_first_project_in_c_
             Console.WriteLine("10. Exit.");
             choiceMenu();
         }
-
+        //קבלת קלט מהמשתמש ובדיקת תקינות הבחירה
         static void choiceMenu()
         {
             int choice;
@@ -59,6 +60,7 @@ namespace my_first_project_in_c_
 
             menu(choice);
         }
+        //ביצוע פעולה בהתאם לבחירת המשתמש בתפריט
         static void menu(int choice)
         {
             switch (choice)
@@ -97,6 +99,7 @@ namespace my_first_project_in_c_
             }
             printMenu();
         }
+        //בדיקת תקינות של המערך שהוזן (שצריך להכיל מספרים חיוביים בלבד)
         static bool inputValidation(string[] args)
         {
             int num;
@@ -124,8 +127,7 @@ namespace my_first_project_in_c_
             }
             return temp;
         }
-        
-
+        //הדפסת מערך של מספרים שלמים
         static void printerListInt(int[] args)
         {
             foreach (int i in args)
@@ -134,6 +136,7 @@ namespace my_first_project_in_c_
             }
             Console.WriteLine();
         }
+        //הדפסת מערך של מחרוזות
         static void printerList(string[] args)
         {
             foreach (string i in args)
@@ -142,12 +145,14 @@ namespace my_first_project_in_c_
             }
             Console.WriteLine();
         }
+        //קבלת קלט מהמשתמש והמרתו למערך מחרוזות
         static void inputDeoding()
         {
             Console.WriteLine("enter 3 numbers: ");
             string[] temp = Console.ReadLine().Split(' ');
             start(temp);
         }
+        //היפוך סדר של מערך מחרוזות
         static string[] argsReverse(string[] args)
         {
             string[] temp = new string[args.Length];
@@ -159,6 +164,7 @@ namespace my_first_project_in_c_
 
             return temp;
         }
+        //המרת מערך מחרוזות למספרים ומיונם
         static int[] sorting(string[] args)
         {
             int[] temp = new int[args.Length];
@@ -169,6 +175,7 @@ namespace my_first_project_in_c_
             temp = sorted(temp);
             return temp;
         }
+        //מיון מערך של מספרים
         static int[] sorted(int[] args)
         {
             for(int i = 0; i< args.Length-1; i++)
@@ -186,16 +193,19 @@ namespace my_first_project_in_c_
             }
             return args;
         }
+        //מציאת הערך הגבוה ביותר במערך
         static int maximum(string[] args)
         {
             int[] temp = sorting(args);
             return temp[args.Length - 1];
         }
+        //מציאת הערך הנמוך ביותר במערך
         static int minimum(String[] args)
         {
             int[] temp = sorting(args);
             return temp[0];
         }
+        //חישוב ממוצע של מספרים במערך
         static float average(string[] args)
         {
             float sum = 0;
@@ -206,10 +216,12 @@ namespace my_first_project_in_c_
             }
             return sum / listLength(args);
         }
+        //קבלת אורך המערך
         static int listLength(string[] args)
         {
             return args.Length;
         }
+        //חישוב סכום הערכים במערך
         static float total(string[] args)
         {
             float sum = 0;
@@ -220,13 +232,13 @@ namespace my_first_project_in_c_
             }
             return sum;
         }
+        //יציאה מהתוכנית
         static void exit()
         {
             Console.WriteLine("good day!!");
             return;
         }
-
-
+        //נקודת ההתחלה של התוכנית
         static void Main(string[] args)
         {
             start(args);
