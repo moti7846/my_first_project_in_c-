@@ -166,22 +166,25 @@ namespace my_first_project_in_c_
             {
                 temp[i] = Convert.ToInt32(args[i]);
             }
-            Array.Sort(temp);
+            temp = sorted(temp);
             return temp;
         }
-        static int[] srorted(int[] args)
+        static int[] sorted(int[] args)
         {
             int[] arr = new int[args.Length];
-            for(int i = 0; i> args.Length-1; i++)
+            for(int i = 0; i< args.Length-1; i++)
             {
                 int temp;
-                for(int j= 1; j < args.Length-1; j++)
+                for(int j= 1; j < args.Length-(1+i); j++)
                 {
                     if (args[i] < args[j])
                     {
-                        arr[i] = args[];
+                        temp = args[j];
+                        args[j] = args[i];
+                        args[i] = temp;
                     }
                 }
+                return args;
             }
 
             return arr;
