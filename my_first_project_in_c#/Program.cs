@@ -9,7 +9,7 @@ namespace my_first_project_in_c_
     internal class Program
     {
         static string[] args;
-        //מבצע אימות ומגדיר את args
+        //מבצע אימות קלט ומגדיר את args
         static void start(string[] arr)
         {
             if (inputValidation(arr))
@@ -18,6 +18,7 @@ namespace my_first_project_in_c_
             }
             else
             {
+                Console.WriteLine("Enter a number with a space between each number.");
                 inputDeoding();
             }
         }
@@ -39,10 +40,20 @@ namespace my_first_project_in_c_
         static void choiceMenu()
         {
             int choice;
+            string temp;
             do
             {
                 Console.Write("enter yuor choice: ");
-                choice = int.Parse(Console.ReadLine());
+                temp = Console.ReadLine();
+                if (int.TryParse(temp, out choice))
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("choice not good...");
+                }
+
             }
             while (choice < 1 || choice > 10);
 
@@ -90,26 +101,30 @@ namespace my_first_project_in_c_
         {
             int num;
             bool temp = true;
-            foreach (string i in args)
+            if(listLength(args) <= 2)
             {
-                if (int.TryParse(i, out num))
+                temp = false;
+            }
+            else
+            {
+                foreach (string i in args)
                 {
-                    if (num < 0)
+                    if (int.TryParse(i, out num))
+                    {
+                        if (num < 0)
+                        {
+                            temp = false;
+                        }
+                    }
+                    else
                     {
                         temp = false;
                     }
                 }
-                else
-                {
-                    temp = false;
-                }
             }
             return temp;
         }
-        static void selectionValidation()
-        {
-            return;
-        }
+        
 
 
         static void printerListInt(int[] args)
@@ -191,7 +206,7 @@ namespace my_first_project_in_c_
         }
         static void exit()
         {
-            Console.WriteLine("god by");
+            Console.WriteLine("good day!");
             return;
         }
 
