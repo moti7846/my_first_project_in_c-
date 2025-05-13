@@ -126,7 +126,6 @@ namespace my_first_project_in_c_
         }
         
 
-
         static void printerListInt(int[] args)
         {
             foreach (int i in args)
@@ -206,10 +205,9 @@ namespace my_first_project_in_c_
         }
         static void exit()
         {
-            Console.WriteLine("good day!");
+            Console.WriteLine("good day!!");
             return;
         }
-
 
 
         static void Main(string[] args)
