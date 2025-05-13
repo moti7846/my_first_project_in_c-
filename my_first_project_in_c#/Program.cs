@@ -14,6 +14,8 @@ namespace my_first_project_in_c_
         {
             args = arr;
         }
+
+        //מדפיס את התפריט + מעבר לבחירה
         static void printMenu()
         {
             Console.WriteLine("1. Input a Series. (Replace the current series)");
@@ -29,6 +31,7 @@ namespace my_first_project_in_c_
             choiceMenu();
         }
 
+        //בודק אם הקלט בחירה תקינה
         static void choiceMenu()
         {
             int choice = -1;
@@ -39,6 +42,7 @@ namespace my_first_project_in_c_
             }
             menu(choice);
         }
+        //בחירה של התפריט
         static void menu(int choice)
         {
             switch (choice)
@@ -71,6 +75,7 @@ namespace my_first_project_in_c_
 
             }
         }
+        //אימות קלט מהמשתמש
         static bool inputValidation(string[] args)
         {
             int num;
@@ -95,14 +100,15 @@ namespace my_first_project_in_c_
         {
             return;
         }
-
+        //מדפיס סטרינג
         static void printer(string str)
         {
             Console.WriteLine(str);
         }
-        static void printerList(string[] args)
+        //מדפיס ליסט
+        static void printerList(string[] lst)
         {
-            foreach (string i in args)
+            foreach (string i in lst)
             {
                 Console.WriteLine(i);
             }
@@ -111,6 +117,7 @@ namespace my_first_project_in_c_
         {
             return;
         }
+        //הופך ליסט לרוורס
         static string[] argsReverse(string[] args)
         {
             string[] temp = new string[args.Length];
@@ -122,16 +129,19 @@ namespace my_first_project_in_c_
 
             return temp;
         }
+        //ממיין ליסט מהנמוך לגבוה
         static string[] sorting(string[] args)
         {
             Array.Sort(args);
             return args;
         }
+        //מחזיר את הערך הכי גבוה בליסט
         static string maximum(string[] args)
         {
-            string[] temp =  sorting(args);
+            string[] temp = sorting(args);
             return temp[args.Length - 1];
         }
+        //מחזיר את הערך הכי נמוך בליסט
         static string minimum(string[] args)
         {
             string[] temp = sorting(args);
