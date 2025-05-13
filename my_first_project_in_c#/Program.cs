@@ -169,6 +169,23 @@ namespace my_first_project_in_c_
             Array.Sort(temp);
             return temp;
         }
+        static int[] srorted(int[] args)
+        {
+            int[] arr = new int[args.Length];
+            for(int i = 0; i> args.Length-1; i++)
+            {
+                int temp;
+                for(int j= 1; j < args.Length-1; j++)
+                {
+                    if (args[i] < args[j])
+                    {
+                        arr[i] = args[];
+                    }
+                }
+            }
+
+            return arr;
+        }
         static int maximum(string[] args)
         {
             int[] temp = sorting(args);
@@ -213,10 +230,7 @@ namespace my_first_project_in_c_
         static void Main(string[] args)
         {
             start(args);
-            if (inputValidation(args))
-            {
-                printMenu();
-            }
+            printMenu();
         }
     }
 }
