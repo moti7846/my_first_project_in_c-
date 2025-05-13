@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +9,19 @@ namespace my_first_project_in_c_
     internal class Program
     {
         static string[] args;
-
+        //מבצע אימות קלט ומגדיר את args
         static void start(string[] arr)
         {
-            args = arr;
+            if (inputValidation(arr))
+            {
+                args = arr;
+            }
+            else
+            {
+                Console.WriteLine("Enter a number with a space between each number.");
+                inputDeoding();
+            }
         }
-
-        //מדפיס את התפריט + מעבר לבחירה
         static void printMenu()
         {
             Console.WriteLine("1. Input a Series. (Replace the current series)");
@@ -31,24 +37,35 @@ namespace my_first_project_in_c_
             choiceMenu();
         }
 
-        //בודק אם הקלט בחירה תקינה
         static void choiceMenu()
         {
-            int choice = -1;
-            while (choice > 0 && choice < 11) ;
+            int choice;
+            string temp;
+            do
             {
                 Console.Write("enter yuor choice: ");
-                choice = int.Parse(Console.ReadLine());
+                temp = Console.ReadLine();
+                if (int.TryParse(temp, out choice))
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("choice not good...");
+                }
+
             }
+            while (choice < 1 || choice > 10);
+
             menu(choice);
         }
-        //בחירה של התפריט
         static void menu(int choice)
         {
             switch (choice)
             {
                 case 1:
-                    return;
+                    inputDeoding();
+                    break;
                 case 2:
                     printerList(args);
                     break;
@@ -56,68 +73,81 @@ namespace my_first_project_in_c_
                     printerList(argsReverse(args));
                     break;
                 case 4:
-                    printerList(sorting(args));
+                    printerListInt(sorting(args));
                     break;
                 case 5:
-                    printer(maximum(args));
+                    Console.WriteLine(maximum(args));
                     break;
                 case 6:
-                    printer(minimum(args));
+                    Console.WriteLine(minimum(args));
                     break;
-                //case 7:
-                //    printer(average(args));
+                case 7:
+                    Console.WriteLine(average(args));
+                    break;
                 case 8:
-                    return;
+                    Console.WriteLine(listLength(args));
+                    break;
                 case 9:
-                    return;
+                    Console.WriteLine(total(args));
+                    break;
                 case 10:
+                    exit();
                     return;
 
             }
+            printMenu();
         }
-        //אימות קלט מהמשתמש
         static bool inputValidation(string[] args)
         {
             int num;
             bool temp = true;
-            foreach (string i in args)
+            if(listLength(args) <= 2)
             {
-                if (int.TryParse(i, out num))
+                temp = false;
+            }
+            else
+            {
+                foreach (string i in args)
                 {
-                    if (num < 0)
+                    if (int.TryParse(i, out num))
+                    {
+                        if (num < 0)
+                        {
+                            temp = false;
+                        }
+                    }
+                    else
                     {
                         temp = false;
                     }
                 }
-                else
-                {
-                    temp = false;
-                }
             }
             return temp;
         }
-        static void selectionValidation()
+        
+
+        static void printerListInt(int[] args)
         {
-            return;
-        }
-        //מדפיס סטרינג
-        static void printer(string str)
-        {
-            Console.WriteLine(str);
-        }
-        //מדפיס ליסט
-        static void printerList(string[] lst)
-        {
-            foreach (string i in lst)
+            foreach (int i in args)
             {
-                Console.WriteLine(i);
+                Console.Write(i + " ");
             }
+            Console.WriteLine();
+        }
+        static void printerList(string[] args)
+        {
+            foreach (string i in args)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
         }
         static void inputDeoding()
         {
-            return;
+            Console.WriteLine("enter 3 numbers: ");
+            string[] temp = Console.ReadLine().Split(' ');
+            start(temp);
         }
-        //הופך ליסט לרוורס
         static string[] argsReverse(string[] args)
         {
             string[] temp = new string[args.Length];
@@ -129,49 +159,60 @@ namespace my_first_project_in_c_
 
             return temp;
         }
-        //ממיין ליסט מהנמוך לגבוה
-        static string[] sorting(string[] args)
+        static int[] sorting(string[] args)
         {
-            Array.Sort(args);
-            return args;
+            int[] temp = new int[args.Length];
+            for (int i = 0; i < args.Length; i++)
+            {
+                temp[i] = Convert.ToInt32(args[i]);
+            }
+            Array.Sort(temp);
+            return temp;
         }
-        //מחזיר את הערך הכי גבוה בליסט
-        static string maximum(string[] args)
+        static int maximum(string[] args)
         {
-            string[] temp = sorting(args);
+            int[] temp = sorting(args);
             return temp[args.Length - 1];
         }
-        //מחזיר את הערך הכי נמוך בליסט
-        static string minimum(string[] args)
+        static int minimum(String[] args)
         {
-            string[] temp = sorting(args);
+            int[] temp = sorting(args);
             return temp[0];
         }
-        static void average(string[] args)
+        static float average(string[] args)
         {
-            return;
+            float sum = 0;
+            int[] temp = sorting(args);
+            foreach (int i in temp)
+            {
+                sum += i;
+            }
+            return sum / listLength(args);
         }
-        static void listLength()
+        static int listLength(string[] args)
         {
-            return;
+            return args.Length;
         }
-        static void total()
+        static float total(string[] args)
         {
-            return;
+            float sum = 0;
+            int[] temp = sorting(args);
+            foreach (int i in temp)
+            {
+                sum += i;
+            }
+            return sum;
         }
         static void exit()
         {
+            Console.WriteLine("good day!!");
             return;
         }
-        static void nul()
-        {
-            return;
-        }
-
 
 
         static void Main(string[] args)
         {
+            start(args);
             if (inputValidation(args))
             {
                 printMenu();
